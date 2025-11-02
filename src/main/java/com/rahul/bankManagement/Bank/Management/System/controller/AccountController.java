@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/account")
 public class AccountController {
@@ -22,6 +24,18 @@ public class AccountController {
     @GetMapping("/{accountNum}")
     public Account getAllAccountDetails(@PathVariable Long accountNum){
         Account account = service.getAccountDetailsByAccountNum(accountNum);
+        return account;
+    }
+
+    @GetMapping("/getallaccounts")
+    public List<Account> getAllAccountDetails(){
+       List<Account> allAccountDetails = service.getAllAccountDetails();
+       return allAccountDetails;
+    }
+
+    @PutMapping("/deposit/{accountNum}/{amount}")
+    public Account depositAmount(@PathVariable Long accountNum, @PathVariable Double amount){
+        Account account = service.depositAmount(accountNum, amount);
         return account;
     }
 }

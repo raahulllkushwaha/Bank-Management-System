@@ -31,12 +31,21 @@ public class AccountServiceImplementation implements AccountService{
 
     @Override
     public List<Account> getAllAccountDetails() {
-        return List.of();
+        List<Account> allAccountDetails = repo.findAll();
+        return allAccountDetails;
     }
 
     @Override
     public Account depositAmount(Long accountNum, Double amount) {
-        return null;
+        Optional<Account> account = repo.findById(accountNum);
+        if(account.isEmpty()){
+            throw new RuntimeException("Account is not present");
+        }
+        Account accountPresent = account.get();
+        Double totalBal = accountPresent.getAccountBal() + amount;
+        accountPresent.setAccountBal(totalBal);
+        repo.save(accountPresent);
+        return accountPresent;
     }
 
     @Override
