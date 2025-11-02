@@ -38,4 +38,12 @@ public class AccountController {
         Account account = service.depositAmount(accountNum, amount);
         return account;
     }
+
+    @PutMapping("/withdraw/{accountNum}/{amount}")
+    public Account withdrawAmount(@PathVariable Long accountNum, @PathVariable Double amount){
+        Account account = service.withdrawAmount(accountNum, amount);
+        return account;
+    }
+
+
 }
