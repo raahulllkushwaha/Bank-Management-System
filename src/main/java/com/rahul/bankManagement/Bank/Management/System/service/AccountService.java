@@ -11,4 +11,5 @@ public interface AccountService {
     public Account depositAmount(Long accountNum, Double amount);
     public Account withdrawAmount(Long accountNum, Double amount);
     public void closeAccount(Long accountNum);
+    public String transferAmount(Long fromAccountNum, Long toAccountNum, Double amount);
 }

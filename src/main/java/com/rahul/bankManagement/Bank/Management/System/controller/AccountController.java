@@ -50,4 +50,14 @@ public class AccountController {
         service.closeAccount(accountNum);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Account Closed");
     }
+
+    @PutMapping("/transfer/{fromAccountNum}/{toAccountNum}/{amount}")
+    public ResponseEntity<String> transferAmount(
+            @PathVariable Long fromAccountNum,
+            @PathVariable Long toAccountNum,
+            @PathVariable Double amount
+    ) {
+        String result = service.transferAmount(fromAccountNum, toAccountNum, amount);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
 }
